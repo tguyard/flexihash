@@ -1,6 +1,8 @@
 Flexihash
 =========
 
+[![Build Status](https://travis-ci.org/minorgod/flexihash.svg?branch=psr-4)](https://travis-ci.org/minorgod/flexihash)
+
 Flexihash is a small PHP library which implements [http://en.wikipedia.org/wiki/Consistent_hashing consistent hashing], which is most useful in distributed caching.  It requires PHP5 and uses PHPUnit for unit testing.
 
 Usage Example
