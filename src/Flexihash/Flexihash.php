@@ -49,7 +49,7 @@ class Flexihash
 
 	/**
 	 * Constructor
-	 * @param object $hasher Flexihash_Hasher
+	 * @param Flexihash_Hasher|object $hasher Flexihash_Hasher
 	 * @param int $replicas Amount of positions to hash each target to.
 	 */
 	public function __construct(Flexihash_Hasher $hasher = null, $replicas = null)
@@ -61,7 +61,9 @@ class Flexihash
 	/**
 	 * Add a target.
 	 * @param string $target
-         * @param float $weight
+	 * @param float|int $weight
+	 * @return $this
+	 * @throws Flexihash_Exception
 	 * @chainable
 	 */
 	public function addTarget($target, $weight=1)
@@ -90,7 +92,9 @@ class Flexihash
 	/**
 	 * Add a list of targets.
 	 * @param array $targets
-         * @param float $weight
+	 * @param float|int $weight
+	 * @return $this
+	 * @throws Flexihash_Exception
 	 * @chainable
 	 */
 	public function addTargets($targets, $weight=1)
@@ -106,6 +110,8 @@ class Flexihash
 	/**
 	 * Remove a target.
 	 * @param string $target
+	 * @return $this
+	 * @throws Flexihash_Exception
 	 * @chainable
 	 */
 	public function removeTarget($target)
@@ -140,6 +146,7 @@ class Flexihash
 	 * Looks up the target for the given resource.
 	 * @param string $resource
 	 * @return string
+	 * @throws Flexihash_Exception
 	 */
 	public function lookup($resource)
 	{
@@ -155,6 +162,7 @@ class Flexihash
 	 * @param string $resource
 	 * @param int $requestedCount The length of the list to return
 	 * @return array List of targets
+	 * @throws Flexihash_Exception
 	 */
 	public function lookupList($resource, $requestedCount)
 	{
