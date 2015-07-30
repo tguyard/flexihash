@@ -1,19 +1,17 @@
 {
-    "name": "minorgod/flexihash",
+    "name": "pda/flexihash",
     "description": "Flexihash Consistent Hashing Library.",
     "keywords": ["consistent hashing", "flexihash"],
     "license": "MIT",
     "authors": [
         {
-            "name": "Brett Brewer",
-            "email": "brett@brettbrewer.com"
+            "name": "Paul Annesley"
         }
     ],
     "require": {
         "php": ">=5.4.0"
     },
     "require-dev": {
-        "mockery/mockery": "~0.9",
         "phpunit/phpunit": "~4.0"
     },
     "autoload": {
