@@ -1,4 +1,4 @@
-<?php
+<?php namespace Flexihash;
 
 /**
  * An exception thrown by Flexihash.

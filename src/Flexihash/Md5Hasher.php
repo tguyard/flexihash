@@ -1,4 +1,4 @@
-<?php
+<?php namespace Flexihash;
 
 /**
  * Uses MD5 to hash a value into a 32bit binary string data address space.

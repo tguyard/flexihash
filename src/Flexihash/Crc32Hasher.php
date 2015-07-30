@@ -1,4 +1,4 @@
-<?php
+<?php namespace Flexihash;
 
 /**
  * Uses CRC32 to hash a value into a signed 32bit int address space.

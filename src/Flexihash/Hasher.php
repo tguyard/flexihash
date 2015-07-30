@@ -1,4 +1,4 @@
-<?php
+<?php namespace Flexihash;
 
 /**
  * Hashes given values into a sortable fixed size address space.

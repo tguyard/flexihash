@@ -1,4 +1,4 @@
-<?php
+<?php namespace Flexihash\Scripts;
 /**
  * Flexihash bundler.
  * Bundles code required to use flexihash into a single PHP file.
