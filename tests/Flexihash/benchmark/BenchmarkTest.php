@@ -1,4 +1,9 @@
-<?php
+<?php namespace Flexihash\Tests;
+use \Flexihash\Flexihash;
+use \Flexihash\Flexihash_Hasher;
+use \Flexihash\Flexihash_Crc32Hasher;
+use \Flexihash\Flexihash_Md5Hasher;
+use \Flexihash\Flexihash_Exception;
 
 /**
  * Benchmarks, not really tests.
@@ -7,7 +12,7 @@
  * @package Flexihash
  * @licence http://www.opensource.org/licenses/mit-license.php
  */
-class Flexihash_BenchmarkTest extends PHPUnit_Framework_TestCase
+class Flexihash_BenchmarkTest extends \PHPUnit_Framework_TestCase
 {
 	private $_targets = 10;
 	private $_lookups = 1000;
@@ -26,7 +31,7 @@ class Flexihash_BenchmarkTest extends PHPUnit_Framework_TestCase
 		$percent = round($differences / $this->_lookups * 100);
 		$this->assertEquals(92.0,$percent);
 
-		echo("NonConsistentHash: {$percent}% of lookups changed " ."after adding a target to the existing {$this->_targets}\n");
+		echo("\nNonConsistentHash: {$percent}% of lookups changed " ."after adding a target to the existing {$this->_targets}\n");
 	}
 
 	public function testRemoveTargetWithNonConsistentHash()
@@ -44,7 +49,7 @@ class Flexihash_BenchmarkTest extends PHPUnit_Framework_TestCase
 
 		$this->assertEquals(90.0,$percent);
 
-		echo("NonConsistentHash: {$percent}% of lookups changed " ."after removing 1 of {$this->_targets} targets\n");
+		echo("\nNonConsistentHash: {$percent}% of lookups changed " ."after removing 1 of {$this->_targets} targets\n");
 	}
 
 	public function testHopeAddingTargetDoesNotChangeMuchWithCrc32Hasher()
@@ -68,7 +73,7 @@ class Flexihash_BenchmarkTest extends PHPUnit_Framework_TestCase
 		$percent = round($differences / $this->_lookups * 100);
 
 		$this->assertEquals(6.0,$percent);
-		echo("ConsistentHash: {$percent}% of lookups changed " ."after adding a target to the existing {$this->_targets}\n");
+		echo("\nConsistentHash: {$percent}% of lookups changed " ."after adding a target to the existing {$this->_targets}\n");
 	}
 
 	public function testHopeRemovingTargetDoesNotChangeMuchWithCrc32Hasher()
@@ -93,7 +98,7 @@ class Flexihash_BenchmarkTest extends PHPUnit_Framework_TestCase
 
 		$this->assertEquals(9.0,$percent);
 
-		echo("ConsistentHash: {$percent}% of lookups changed " . "after removing 1 of {$this->_targets} targets\n");
+		echo("\nConsistentHash: {$percent}% of lookups changed " . "after removing 1 of {$this->_targets} targets\n");
 	}
 
 
@@ -116,7 +121,7 @@ class Flexihash_BenchmarkTest extends PHPUnit_Framework_TestCase
 
 
 		echo(sprintf(
-			"Distribution of %d lookups per target (min/max/median/avg): %d/%d/%d/%d \n",
+			"\nDistribution of %d lookups per target (min/max/median/avg): %d/%d/%d/%d \n",
 			$this->_lookups / $this->_targets,
 			min($distribution),
 			max($distribution),
@@ -145,7 +150,7 @@ class Flexihash_BenchmarkTest extends PHPUnit_Framework_TestCase
 
 
 		echo(sprintf(
-			"Hashers timed over %d hashes (MD5 / CRC32): %f / %f \n",
+			"\nHashers timed over %d hashes (MD5 / CRC32): %f / %f \n",
 			$hashCount,
 			$timeMd5,
 			$timeCrc32

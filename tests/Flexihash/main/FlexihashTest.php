@@ -1,11 +1,15 @@
-<?php
+<?php namespace Flexihash\Tests;
 
+use \Flexihash\Flexihash;
+use \Flexihash\Flexihash_Hasher;
+use \Flexihash\Flexihash_Crc32Hasher;
+//use \Flexihash\Flexihash_Exception;
 /**
  * @author Paul Annesley
  * @package Flexihash
  * @licence http://www.opensource.org/licenses/mit-license.php
  */
-class Flexihash_FlexihashTest extends PHPUnit_Framework_TestCase
+class Flexihash_FlexihashTest extends \PHPUnit_Framework_TestCase
 {
 
 	public function testGetAllTargetsEmpty()
@@ -18,7 +22,7 @@ class Flexihash_FlexihashTest extends PHPUnit_Framework_TestCase
 	{
 		$hashSpace = new Flexihash();
 		$hashSpace->addTarget('t-a');
-		$this->setExpectedException('Flexihash_Exception');
+		$this->setExpectedException('\Flexihash\Flexihash_Exception');
 		//$this->expectException('Flexihash_Exception');
 		$hashSpace->addTarget('t-a');
 	}
@@ -59,7 +63,7 @@ class Flexihash_FlexihashTest extends PHPUnit_Framework_TestCase
 	public function testRemoveTargetFailsOnMissingTarget()
 	{
 		$hashSpace = new Flexihash();
-		$this->setExpectedException('Flexihash_Exception');
+		$this->setExpectedException('\Flexihash\Flexihash_Exception');
 		$hashSpace->removeTarget('not-there');
 	}
 
