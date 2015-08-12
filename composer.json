@@ -1,5 +1,5 @@
 {
-    "name": "pda/flexihash",
+    "name": "tguyard/flexihash",
     "description": "Flexihash Consistent Hashing Library.",
     "keywords": ["consistent hashing", "flexihash"],
     "license": "MIT",
