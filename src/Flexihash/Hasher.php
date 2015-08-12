@@ -7,7 +7,7 @@
  * @package Flexihash
  * @licence http://www.opensource.org/licenses/mit-license.php
  */
-interface Flexihash_Hasher
+interface Hasher
 {
 
 	/**

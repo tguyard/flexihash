@@ -20,8 +20,8 @@ class Flexihash
 	private $_replicas = 64;
 
 	/**
-	 * The hash algorithm, encapsulated in a Flexihash_Hasher implementation.
-	 * @var object Flexihash_Hasher
+	 * The hash algorithm, encapsulated in a Hasher implementation.
+	 * @var object Hasher
 	 */
 	private $_hasher;
 
@@ -51,12 +51,12 @@ class Flexihash
 
 	/**
 	 * Constructor
-	 * @param Flexihash_Hasher|object $hasher Flexihash_Hasher
+	 * @param Hasher|object $hasher Hasher
 	 * @param int $replicas Amount of positions to hash each target to.
 	 */
-	public function __construct(Flexihash_Hasher $hasher = null, $replicas = null)
+	public function __construct(Hasher $hasher = null, $replicas = null)
 	{
-		$this->_hasher = $hasher ? $hasher : new Flexihash_Crc32Hasher();
+		$this->_hasher = $hasher ? $hasher : new Crc32Hasher();
 		if (!empty($replicas)) $this->_replicas = $replicas;
 	}
 
@@ -65,14 +65,14 @@ class Flexihash
 	 * @param string $target
 	 * @param float|int $weight
 	 * @return $this
-	 * @throws Flexihash_Exception
+	 * @throws Exception
 	 * @chainable
 	 */
 	public function addTarget($target, $weight=1)
 	{
 		if (isset($this->_targetToPositions[$target]))
 		{
-			throw new Flexihash_Exception("Target '$target' already exists.");
+			throw new Exception("Target '$target' already exists.");
 		}
 
 		$this->_targetToPositions[$target] = array();
@@ -96,7 +96,7 @@ class Flexihash
 	 * @param array $targets
 	 * @param float|int $weight
 	 * @return $this
-	 * @throws Flexihash_Exception
+	 * @throws Exception
 	 * @chainable
 	 */
 	public function addTargets($targets, $weight=1)
@@ -113,14 +113,14 @@ class Flexihash
 	 * Remove a target.
 	 * @param string $target
 	 * @return $this
-	 * @throws Flexihash_Exception
+	 * @throws Exception
 	 * @chainable
 	 */
 	public function removeTarget($target)
 	{
 		if (!isset($this->_targetToPositions[$target]))
 		{
-			throw new Flexihash_Exception("Target '$target' does not exist.");
+			throw new Exception("Target '$target' does not exist.");
 		}
 
 		foreach ($this->_targetToPositions[$target] as $position)
@@ -148,12 +148,12 @@ class Flexihash
 	 * Looks up the target for the given resource.
 	 * @param string $resource
 	 * @return string
-	 * @throws Flexihash_Exception
+	 * @throws Exception
 	 */
 	public function lookup($resource)
 	{
 		$targets = $this->lookupList($resource, 1);
-		if (empty($targets)) throw new Flexihash_Exception('No targets exist');
+		if (empty($targets)) throw new Exception('No targets exist');
 		return $targets[0];
 	}
 
@@ -164,12 +164,12 @@ class Flexihash
 	 * @param string $resource
 	 * @param int $requestedCount The length of the list to return
 	 * @return array List of targets
-	 * @throws Flexihash_Exception
+	 * @throws Exception
 	 */
 	public function lookupList($resource, $requestedCount)
 	{
 		if (!$requestedCount)
-			throw new Flexihash_Exception('Invalid count requested');
+			throw new Exception('Invalid count requested');
 
 		// handle no targets
 		if (empty($this->_positionToTarget))

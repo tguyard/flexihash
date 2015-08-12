@@ -1,9 +1,9 @@
 <?php namespace Flexihash\Tests;
 use \Flexihash\Flexihash;
-use \Flexihash\Flexihash_Hasher;
-use \Flexihash\Flexihash_Crc32Hasher;
-use \Flexihash\Flexihash_Md5Hasher;
-use \Flexihash\Flexihash_Exception;
+use \Flexihash\Hasher;
+use \Flexihash\Crc32Hasher;
+use \Flexihash\Md5Hasher;
+use \Flexihash\Exception;
 
 /**
  * Benchmarks, not really tests.
@@ -55,7 +55,7 @@ class Flexihash_BenchmarkTest extends \PHPUnit_Framework_TestCase
 	public function testHopeAddingTargetDoesNotChangeMuchWithCrc32Hasher()
 	{
 		$hashSpace = new Flexihash(
-			new Flexihash_Crc32Hasher()
+			new Crc32Hasher()
 		);
 		foreach (range(1,$this->_targets) as $i) $hashSpace->addTarget("target$i");
 
@@ -79,7 +79,7 @@ class Flexihash_BenchmarkTest extends \PHPUnit_Framework_TestCase
 	public function testHopeRemovingTargetDoesNotChangeMuchWithCrc32Hasher()
 	{
 		$hashSpace = new Flexihash(
-			new Flexihash_Crc32Hasher()
+			new Crc32Hasher()
 		);
 		foreach (range(1,$this->_targets) as $i) $hashSpace->addTarget("target$i");
 
@@ -105,7 +105,7 @@ class Flexihash_BenchmarkTest extends \PHPUnit_Framework_TestCase
 	public function testHashDistributionWithCrc32Hasher()
 	{
 		$hashSpace = new Flexihash(
-			new Flexihash_Crc32Hasher()
+			new Crc32Hasher()
 		);
 
 		foreach (range(1,$this->_targets) as $i) $hashSpace->addTarget("target$i");
@@ -135,8 +135,8 @@ class Flexihash_BenchmarkTest extends \PHPUnit_Framework_TestCase
 	{
 		$hashCount = 100000;
 
-		$md5Hasher = new Flexihash_Md5Hasher();
-		$crc32Hasher = new Flexihash_Crc32Hasher();
+		$md5Hasher = new Md5Hasher();
+		$crc32Hasher = new Crc32Hasher();
 
 		$start = microtime(true);
 		for ($i = 0; $i < $hashCount; $i++)

@@ -8,12 +8,12 @@
  * @package Flexihash
  * @licence http://www.opensource.org/licenses/mit-license.php
  */
-class Flexihash_Crc32Hasher
-	implements Flexihash_Hasher
+class Crc32Hasher
+	implements Hasher
 {
 
 	/* (non-phpdoc)
-	 * @see Flexihash_Hasher::hash()
+	 * @see Hasher::hash()
 	 */
 	public function hash($string)
 	{
